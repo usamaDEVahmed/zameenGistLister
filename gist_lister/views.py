@@ -31,7 +31,7 @@ def get_gists(url):
     :return: A list of all of the public gists
     """
     gists = [] # the list that will contain all of the public gists
-    response = requests.get(url, auth=('usamaDEVahmed', '338aea5d31987491308025f4017c574ed5bab138'))
+    response = requests.get(url)
     # extracting each gist form the GET request
     for each in response.json():
         # extracting only public gists
