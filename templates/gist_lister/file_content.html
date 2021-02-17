@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/gist_lister/file_content_style.css">
+    <title>File Content</title>
+</head>
+<body>
+    <div class="content">
+            {% if files %}
+                {% for each in files %}
+                <p class="filename-label">filename: {{ each.filename }}</p>
+                {% if forker %}
+                    <p class="last-three-forkers">Users who forked: <a href="{{forker.0.2}}">{{forker.0.1}}</a> <a href="{{forker.1.2}}">{{forker.1.1}}</a> <a href="{{forker.2.2}}">{{forker.2.1}}</a></p>
+                {% endif %}
+                <textarea class="file-content-area form-control" name="filecontent" cols="40" rows="20">{{ each.file_content }}</textarea>
+                <ul class="file-tags">
+                    {% if not each.file_tag %}
+                        <p>Log file</p>
+                    {% else %}
+                        <li>{{ each.file_tag }}</li>
+                    {% endif %}
+                </ul>
+                {% endfor %}
+            {% else %}
+                <p>No file found</p>
+            {% endif %}
+    </div>
+</body>
+</html>

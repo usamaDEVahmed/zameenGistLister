@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/gist_lister/list_gists.css">
+    <title>Gists</title>
+</head>
+<body>
+    <div class="gists-list">
+        <div class="owner-name"><h5>{% if gists %}<a href="{{ gists.0.avatar }}">{{gists.1.owner}}'s public gists:</a>{% endif %}</h5></div>
+        <div class="gist-list-item d-grid gap-1">
+            {% if gists%}
+                {% for each in gists %}
+                    <form method="POST">
+                        <button name="{{ each.id }}" type="submit" class="gist-btn btn btn-outline-primary" value="{{ each.id }}">{{ each.id }}</button>
+                        {% csrf_token %}
+                    </form>
+
+                {% endfor %}
+            {% endif %}    
+        </div>
+    </div>
+
+
+</body>
+</html>
